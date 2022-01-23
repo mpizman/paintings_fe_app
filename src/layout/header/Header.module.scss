@@ -1,0 +1,59 @@
+@import "../../css/vars.scss";
+
+.header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0px 2px 11px -3px rgba(89,89,89,0.76);
+  -webkit-box-shadow: 0px 2px 11px -3px rgba(89,89,89,0.76);
+  -moz-box-shadow: 0px 2px 11px -3px rgba(89,89,89,0.76);
+
+  h2 {
+    margin-left: 15px;
+    color: $main-color;
+  }
+
+  .headerLinks {
+    margin-left: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+
+    .headerLink {
+      text-decoration: none;
+      border: none;
+      background-color: #fff;
+      font-family: sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: $main-color;
+      padding-bottom: 0;
+      padding-top: 0;
+      padding-right: 0;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      position: relative;
+
+      &.active {
+        &::after {
+          content: "";
+          position: absolute;
+          border-bottom: 4px solid $main-color;
+          width: 90%;
+          bottom: 0;
+        }
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      + .headerLink {
+        padding-left: 10px;
+      }
+    }
+  }
+}
