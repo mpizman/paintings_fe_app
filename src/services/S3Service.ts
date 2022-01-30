@@ -10,14 +10,14 @@ const s3 = new aws.S3({
   region,
   accessKeyId,
   secretAccessKey,
-  signatureVersion: '4'
+  signatureVersion: 'v4'
 });
 
 export const genereteUploadURL = async (imageName: String) => {
-  imageName.replace(/\s/g, "_");
+  const name = imageName.replace(/\s/g, "_");
   const params = ({
     Bucket: bucketName,
-    Key: imageName,
+    Key: name,
     Expires: 60
   });
 

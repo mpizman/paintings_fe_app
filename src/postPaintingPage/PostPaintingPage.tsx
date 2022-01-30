@@ -7,10 +7,21 @@ const PostPaintingPage = () => {
 
   const postPainting = async () => {
     const url = await genereteUploadURL(imageName);
-    console.log(url);
+    await fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "multipart/form-data"
+      },
+      body: file
+    });
+    const imageUrl = url.split("?")[0];
+    console.log(imageUrl);
   };
 
-  return <form onSubmit={e => {postPainting()}}>
+  return <form onSubmit={e => {
+    e.preventDefault();
+    postPainting();
+  }}>
     <label htmlFor='paintingName'>
       Name
     </label>
@@ -34,7 +45,7 @@ const PostPaintingPage = () => {
       }} />
     <button type='submit'>
       Submit!
-      </button>
+    </button>
   </form>;
 }
 
