@@ -6,19 +6,21 @@ import { BrowserRouter } from "react-router-dom";
 import HomePage from "../homePage/HomePage";
 import NotFoundPage from "../notFountPage/NotFoundPage";
 import SearchPage from "../searchPage/SearchPage";
+import PostPaintingPage from '../postPaintingPage/PostPaintingPage';
 
 const Layout = () => {
 
   const routes = () => <Routes>
     <Route path="/" element={<HomePage />} />
     <Route path="search" element={<SearchPage />} />
+    <Route path="postPainting" element={<PostPaintingPage />} />
     <Route path="*" element={<NotFoundPage />} />
-  </Routes>
+  </Routes>;
 
   return <div className={styles.layout}>
     <BrowserRouter>
       <Header />
-      {routes}
+      {routes()}
     </BrowserRouter>
   </div>;
 }
