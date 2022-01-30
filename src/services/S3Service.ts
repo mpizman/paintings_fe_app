@@ -1,10 +1,9 @@
 import aws from 'aws-sdk';
-import Constants from './Constants';
 
 const region = 'us-east-2';
 const bucketName = 'painting-files-bucket';
-const accessKeyId = Constants.ACCESS_KEY_AWS;
-const secretAccessKey = Constants.SECRET_ACCESS_KEY_AWS;
+const accessKeyId = process.env.REACT_APP_ACCESS_KEY_AWS;
+const secretAccessKey = process.env.REACT_APP_SECRET_ACCESS_KEY_AWS;
 
 const s3 = new aws.S3({
   region,
