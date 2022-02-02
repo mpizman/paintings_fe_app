@@ -7,6 +7,8 @@ import HomePage from "../homePage/HomePage";
 import NotFoundPage from "../notFountPage/NotFoundPage";
 import SearchPage from "../searchPage/SearchPage";
 import PostPaintingPage from '../postPaintingPage/PostPaintingPage';
+import { UserContextComp } from '../userContext/UserContextComp';
+import LoginPage from '../loginPage/LoginPage';
 
 const Layout = () => {
 
@@ -14,15 +16,18 @@ const Layout = () => {
     <Route path="/" element={<HomePage />} />
     <Route path="search" element={<SearchPage />} />
     <Route path="postPainting" element={<PostPaintingPage />} />
+    <Route path="login" element={<LoginPage />} />    
     <Route path="*" element={<NotFoundPage />} />
   </Routes>;
 
-  return <div className={styles.layout}>
-    <BrowserRouter>
-      <Header />
-      {routes()}
-    </BrowserRouter>
-  </div>;
+  return <UserContextComp>
+    <div className={styles.layout}>
+      <BrowserRouter>
+        <Header />
+        {routes()}
+      </BrowserRouter>
+    </div>
+  </UserContextComp>;
 }
 
 export default Layout;
