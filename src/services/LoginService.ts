@@ -1,4 +1,6 @@
-export const attempLogin = (username: String, password: String) => {
+import { LoginAttempResult } from "../type";
+
+export const attempLogin = (username: String, password: String) : Promise<LoginAttempResult> => {
   let headers = new Headers();
   headers.append("Content-Type", "application/json");
 
@@ -15,9 +17,8 @@ export const attempLogin = (username: String, password: String) => {
   };
 
   return fetch("http://ec2-13-59-210-173.us-east-2.compute.amazonaws.com:80/login", requestOptions)
-    .then(response => response.text())
+    .then(response => response.json())
     .then(result => {
-      console.log(result);
       return result;
     })
     .catch(error => console.log('error', error));

@@ -7,7 +7,9 @@ interface UserContextCompProps {
 
 const UserContext = createContext<IUserContext>({} as IUserContext);
 const UserContextComp = (props: UserContextCompProps) => {
-  const [user, setUser] = useState<IUser>({} as IUser);
+  const loggedInUser = localStorage.getItem("user");
+  const loggedInUserObj : IUser = loggedInUser ? JSON.parse(loggedInUser) : {};
+  const [user, setUser] = useState<IUser>(loggedInUserObj);
 
   return <UserContext.Provider value={{ user, setUser }}>
     {props.children}
