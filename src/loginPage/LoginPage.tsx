@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
-import { attempLogin } from "../services/LoginService";
 import _ from "lodash";
 import { UserContext } from "../userContext/UserContextComp";
 import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import styles from './LoginPage.module.scss';
 import { decodeJwtResponse, IUser } from "../type";
+import { attempLogin } from "../services/ApiServices";
 
 const LoginPage = () => {
   const [username, setUsername] = useState<String>("");

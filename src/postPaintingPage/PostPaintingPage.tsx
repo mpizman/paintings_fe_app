@@ -1,26 +1,15 @@
 import { useState } from "react";
-import { genereteUploadURL } from "../services/S3Service";
+import { putImageOnBucket } from "../services/S3Service";
 
 const PostPaintingPage = () => {
   const [file, setFile] = useState<File>();
   const [imageName, setImageName] = useState<String>("");
 
-  const postPainting = async () => {
-    const url = await genereteUploadURL(imageName);
-    await fetch(url, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "multipart/form-data"
-      },
-      body: file
-    });
-    const imageUrl = url.split("?")[0];
-    console.log(imageUrl);
-  };
-
-  return <form onSubmit={e => {
+  return<form onSubmit={e => {
     e.preventDefault();
-    postPainting();
+    if (file) {
+      putImageOnBucket(imageName, file);
+    }
   }}>
     <label htmlFor='paintingName'>
       Name
