@@ -1,10 +1,12 @@
 import Constants from "../Constants";
 import { LoginAttempResult } from "../type";
 
+declare var jQuery: any;
+
 export const fetchApi = (
   method: "POST" | "GET" | "DELETE" | "PATCH",
   endpoint: String,
-  body: any,
+  body?: any,
   token?: String
 ): Promise<any> => {
   let headers = new Headers();
@@ -31,11 +33,36 @@ export const fetchApi = (
     .catch(error => console.log('error', error));
 }
 
-export const attempLogin = (username: String, password: String) : Promise<LoginAttempResult> => {
+export const attempLoginService = (username: String, password: String) : Promise<LoginAttempResult> => {
   const body = {
     "username": username,
     "password": password
   };
 
   return fetchApi("POST", "login", body);
+}
+
+export const getPaintingsService = (searchQuery?: String,
+  uploaderUsername?: String,
+  artist?: String,
+  name?: String,
+  sortField?: String,
+  sortOrder?: String,
+  pageNumber?: Number,
+  rpp?: Number
+  ) => {
+    const queryParams = {
+      searchQuery,
+      uploaderUsername,
+      artist,
+      name,
+      sortField,
+      sortOrder,
+      pageNumber,
+      rpp
+    };
+
+    const queryParamsString: String = jQuery.param(queryParams);
+
+    return fetchApi("GET", `api/paintings?${queryParamsString}`)
 }

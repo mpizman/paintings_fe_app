@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import styles from './LoginPage.module.scss';
 import { decodeJwtResponse, IUser } from "../type";
-import { attempLogin } from "../services/ApiServices";
+import { attempLoginService } from "../services/ApiServices";
 
 const LoginPage = () => {
   const [username, setUsername] = useState<String>("");
@@ -21,7 +21,7 @@ const LoginPage = () => {
 
   return <form className={styles.loginPageForm} onSubmit={e => {
     e.preventDefault();
-    attempLogin(username, password).then(result => {
+    attempLoginService(username, password).then(result => {
       let user: IUser = {
         username: username,
         token: result?.access_token,

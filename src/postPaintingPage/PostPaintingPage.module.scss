@@ -1,0 +1,23 @@
+.postPaintingForm {
+  display: grid;
+  grid-template-columns: fit-content(100%) auto;
+  column-gap: 7px;
+  row-gap: 10px;
+  margin-top: 20px;
+  min-width: 700px;
+
+  :global {
+    label {
+      justify-self: end;
+    }
+    button {
+      grid-column: 2 / 2;
+      width: max-content;
+      justify-self: end;
+    }
+
+    textarea {
+      min-height: 100px;
+    }
+  }
+}

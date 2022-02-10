@@ -4,6 +4,7 @@ import { IUser } from "../type";
 import { UserContext } from "../userContext/UserContextComp";
 import headerStyles from '../layout/header/Header.module.scss';
 import styles from './UserMenu.module.scss';
+import { logoutService } from "../services/GeneralServices";
 
 const UserMenu = () => {
   const userContext = useContext(UserContext);
@@ -22,8 +23,7 @@ const UserMenu = () => {
       }
       <div className="dropdown-divider"></div>
       <a className="dropdown-item" href="#" onClick={() => {
-        localStorage.removeItem('user');
-        userContext.setUser({} as IUser);
+        logoutService(userContext);
       }}>Logout</a>
     </div>
   </div>

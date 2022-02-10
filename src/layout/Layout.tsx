@@ -9,6 +9,7 @@ import SearchPage from "../searchPage/SearchPage";
 import PostPaintingPage from '../postPaintingPage/PostPaintingPage';
 import { UserContextComp } from '../userContext/UserContextComp';
 import LoginPage from '../loginPage/LoginPage';
+import Footer from './footer/Footer';
 
 const Layout = () => {
 
@@ -25,6 +26,7 @@ const Layout = () => {
       <BrowserRouter>
         <Header />
         {routes()}
+        <Footer />
       </BrowserRouter>
     </div>
   </UserContextComp>;
