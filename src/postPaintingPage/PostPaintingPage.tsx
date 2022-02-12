@@ -6,6 +6,7 @@ import _ from "lodash";
 import styles from "./PostPaintingPage.module.scss"
 import { getPaintingsService } from "../services/ApiServices";
 import { DebounceInput } from 'react-debounce-input';
+import { ReactComponent as XSvg } from '../css/assets/x_close.svg';
 
 const PostPaintingPage = () => {
   const [file, setFile] = useState<File>();
@@ -13,6 +14,8 @@ const PostPaintingPage = () => {
   const [description, setDescription] = useState<String>("");
   const [artist, setArtist] = useState<String>("");
   const [price, setPrice] = useState<number>(0);
+  const [isValidImageName, setIsValidImageName] = useState<Boolean>(false);
+  const [isValidPost, setIsValidPost] = useState<Boolean>(false);
   const userContext = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -23,8 +26,18 @@ const PostPaintingPage = () => {
   });
 
   useEffect(() => {
-    console.log(getPaintingsService(undefined, undefined, undefined, imageName, undefined, undefined, 0, 10));
+    getPaintingsService(undefined, undefined, undefined, imageName, undefined, undefined, 0, 10).then(searchResult => {
+      setIsValidImageName(searchResult.empty && !!imageName.length);
+    });
   }, [imageName])
+
+  useEffect(() => {
+    setIsValidPost(!!file?.size &&
+      isValidImageName &&
+      !!description.length &&
+      !!artist.length &&
+      price >= 0);
+  }, [file, isValidImageName, description, artist, price])
 
   return <form className={styles.postPaintingForm} onSubmit={e => {
     e.preventDefault();
@@ -50,6 +63,14 @@ const PostPaintingPage = () => {
       id='paintingName'
       name='paintingName'
       onChange={e => setImageName(e.target.value)} />
+    {
+      !isValidImageName && !!imageName.length ?
+        <div className="notValidImage">
+          <XSvg />
+          Name is already taken
+        </div> :
+        <></>
+    }
     <label htmlFor='paintingDescription'>
       Description:
     </label>
@@ -62,7 +83,7 @@ const PostPaintingPage = () => {
       Price:
     </label>
     <input id='paintingPrice' type="number" min={0} name='paintingPrice' onChange={e => setPrice(Number(e.target.value))} />
-    <button type='submit' className="btnSubmit">
+    <button type='submit' className="btnSubmit" disabled={!isValidPost}>
       Post!
     </button>
   </form>;

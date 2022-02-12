@@ -1,5 +1,5 @@
 import Constants from "../Constants";
-import { LoginAttempResult } from "../type";
+import { LoginAttempResult, searchPaintingsResponse } from "../type";
 
 declare var jQuery: any;
 
@@ -50,7 +50,7 @@ export const getPaintingsService = (searchQuery?: String,
   sortOrder?: String,
   pageNumber?: Number,
   rpp?: Number
-  ) => {
+  ): Promise<searchPaintingsResponse> => {
     const queryParams = {
       searchQuery,
       uploaderUsername,

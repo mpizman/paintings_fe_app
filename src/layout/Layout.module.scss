@@ -30,6 +30,13 @@
         background: #fff;
         transition: 0.3s;
       }
+
+      &:disabled {
+        color: #fff;
+        background-color: #6b83ce;
+        opacity: .5;
+        cursor: default;
+      }
     }
   }
 }
