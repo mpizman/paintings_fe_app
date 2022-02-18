@@ -20,14 +20,6 @@ export interface decodeJwtResponse {
   sub: String;
 }
 
-export interface miniPainting {
-  artist: String;
-  description: String;
-  id: String;
-  name: String;
-  price: Number;
-}
-
 export interface Peagable {
   offset: Number;
   pageNumber: Number;
@@ -44,7 +36,7 @@ export interface Sort {
 }
 
 export interface searchPaintingsResponse {
-  content: miniPainting[];
+  content: Painting[];
   empty: boolean;
   first: boolean;
   last: boolean;
@@ -55,4 +47,16 @@ export interface searchPaintingsResponse {
   sort: Sort;
   totalElements: Number;
   totalPages: Number;
+}
+
+export interface Painting {
+  artist: String;
+  description: String;
+  id: String;
+  name: String;
+  price: Number;
+  url: string;
+  date: Date;
+  uploaderUsername: String;
+  score?: Number;
 }

@@ -1,5 +1,5 @@
 import Constants from "../Constants";
-import { LoginAttempResult, searchPaintingsResponse } from "../type";
+import { LoginAttempResult, Painting, searchPaintingsResponse } from "../type";
 
 declare var jQuery: any;
 
@@ -15,13 +15,10 @@ export const fetchApi = (
     headers.append("Authorization", `Bearer ${token}`);
   }
 
-  const raw = JSON.stringify(body);
-
-
   const requestOptions = {
     method,
     headers,
-    body: raw,
+    body: body ? JSON.stringify(body) : undefined,
     redirect: "follow" as RequestRedirect
   };
 
@@ -33,7 +30,7 @@ export const fetchApi = (
     .catch(error => console.log('error', error));
 }
 
-export const attempLoginService = (username: String, password: String) : Promise<LoginAttempResult> => {
+export const attempLoginService = (username: String, password: String): Promise<LoginAttempResult> => {
   const body = {
     "username": username,
     "password": password
@@ -50,19 +47,42 @@ export const getPaintingsService = (searchQuery?: String,
   sortOrder?: String,
   pageNumber?: Number,
   rpp?: Number
-  ): Promise<searchPaintingsResponse> => {
-    const queryParams = {
-      searchQuery,
-      uploaderUsername,
-      artist,
-      name,
-      sortField,
-      sortOrder,
-      pageNumber,
-      rpp
-    };
+): Promise<searchPaintingsResponse> => {
+  const queryParams = {
+    searchQuery,
+    uploaderUsername,
+    artist,
+    name,
+    sortField,
+    sortOrder,
+    pageNumber,
+    rpp
+  };
 
-    const queryParamsString: String = jQuery.param(queryParams);
+  const queryParamsString: String = jQuery.param(queryParams);
 
-    return fetchApi("GET", `api/paintings?${queryParamsString}`)
+  return fetchApi("GET", `api/paintings?${queryParamsString}`)
+}
+
+export const postPaintingService = (name: String,
+  description: String,
+  url: String,
+  artist: String,
+  price: Number,
+  date: Date,
+  token: String): Promise<Painting> => {
+  const body = {
+    name,
+    description,
+    url,
+    artist,
+    price,
+    date
+  };
+
+  return fetchApi("POST", "api/painting", body, token);
+}
+
+export const getpaintingByIdService = (id: String) => {
+  return fetchApi("GET", `api/painting/${id}`);
 }

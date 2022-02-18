@@ -1,10 +1,12 @@
+
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { putImageOnBucket } from "../services/S3Service";
 import { UserContext } from "../userContext/UserContextComp";
 import _ from "lodash";
 import styles from "./PostPaintingPage.module.scss"
-import { getPaintingsService } from "../services/ApiServices";
+import { getPaintingsService, postPaintingService } from "../services/ApiServices";
 import { DebounceInput } from 'react-debounce-input';
 import { ReactComponent as XSvg } from '../css/assets/x_close.svg';
 
@@ -42,7 +44,20 @@ const PostPaintingPage = () => {
   return <form className={styles.postPaintingForm} onSubmit={e => {
     e.preventDefault();
     if (file) {
-      putImageOnBucket(imageName, file);
+      putImageOnBucket(imageName, file).then(url => {
+        postPaintingService(imageName, description, url, artist, price, new Date(), userContext.user.token).then(postedPainting => {
+          toast.success(`Posted ${postedPainting.name} successfully!`, {
+            position: "bottom-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
+          navigate("/");
+        })
+      });
     }
   }}>
     <label htmlFor='paintingInput'>

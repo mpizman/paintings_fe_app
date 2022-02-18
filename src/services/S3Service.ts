@@ -24,7 +24,7 @@ export const genereteUploadURL = async (imageName: String, isDelete? : boolean) 
   return uploadURL;
 }
 
-export const putImageOnBucket = async (imageName: String, file: File) => {
+export const putImageOnBucket = async (imageName: String, file: File): Promise<string> => {
   const url = await genereteUploadURL(imageName);
   await fetch(url, {
     method: "PUT",
@@ -33,8 +33,7 @@ export const putImageOnBucket = async (imageName: String, file: File) => {
     },
     body: file
   });
-  const imageUrl = url.split("?")[0];
-  console.log(imageUrl);
+  return url.split("?")[0];
 }
 
 export const deleteImageFromBucket = async (imageName: String) => {

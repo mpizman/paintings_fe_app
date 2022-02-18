@@ -10,6 +10,8 @@ import PostPaintingPage from '../postPaintingPage/PostPaintingPage';
 import { UserContextComp } from '../userContext/UserContextComp';
 import LoginPage from '../loginPage/LoginPage';
 import Footer from './footer/Footer';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
 
 const Layout = () => {
 
@@ -26,6 +28,7 @@ const Layout = () => {
       <BrowserRouter>
         <Header />
         {routes()}
+        <ToastContainer />
         <Footer />
       </BrowserRouter>
     </div>
