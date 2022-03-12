@@ -3,7 +3,8 @@ import React, { useContext } from 'react';
 import _ from 'lodash';
 import { Link, useLocation } from 'react-router-dom';
 import styles from './Header.module.scss';
-import { ReactComponent as LogoSvg } from '../../css/assets/Yonis_logo.svg';
+import { ReactComponent as WhiteLogoSvg } from '../../css/assets/Yonis_logo_white.svg';
+import { ReactComponent as BlackLogoSvg } from '../../css/assets/Yonis_logo.svg';
 import { UserContext } from '../../userContext/UserContextComp';
 import UserMenu from '../../userMenu/UserMenu';
 
@@ -12,9 +13,12 @@ const Header = () => {
   const userContext = useContext(UserContext);
   const location = useLocation();
 
-  return <header className={styles.header}>
+  return <header className={`${styles.header} ${location.pathname == '/' ? styles.homeHeader : ''}`}>
     <Link to='/' className={styles.logoLink}>
-      <LogoSvg />
+      {location?.pathname == '/' ?
+        <WhiteLogoSvg /> :
+        <BlackLogoSvg />
+      }
     </Link>
     <div className={styles.headerLinks}>
       <Link to="/" className={`${styles.headerLink} ${location.pathname == '/' ? styles.active : ''}`}>
@@ -28,7 +32,7 @@ const Header = () => {
       </button>
       {
         !_.isEmpty(userContext.user) ?
-          <UserMenu /> : 
+          <UserMenu /> :
           <Link to='/login' className={`${styles.headerLink} ${location.pathname == '/login' ? styles.active : ''}`}>
             Login
           </Link>

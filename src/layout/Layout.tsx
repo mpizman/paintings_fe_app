@@ -11,7 +11,7 @@ import { UserContextComp } from '../userContext/UserContextComp';
 import LoginPage from '../loginPage/LoginPage';
 import Footer from './footer/Footer';
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; 
+import 'react-toastify/dist/ReactToastify.css';
 
 const Layout = () => {
 
@@ -19,19 +19,19 @@ const Layout = () => {
     <Route path="/" element={<HomePage />} />
     <Route path="search" element={<SearchPage />} />
     <Route path="postPainting" element={<PostPaintingPage />} />
-    <Route path="login" element={<LoginPage />} />    
+    <Route path="login" element={<LoginPage />} />
     <Route path="*" element={<NotFoundPage />} />
   </Routes>;
 
   return <UserContextComp>
-    <div className={styles.layout}>
-      <BrowserRouter>
+    <BrowserRouter>
+      <div className={styles.layout}>
         <Header />
         {routes()}
         <ToastContainer />
         <Footer />
-      </BrowserRouter>
-    </div>
+      </div>
+    </BrowserRouter>
   </UserContextComp>;
 }
 

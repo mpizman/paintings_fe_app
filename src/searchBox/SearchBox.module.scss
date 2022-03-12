@@ -1,0 +1,46 @@
+.searchBox {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+
+  :global {
+    .searchBoxInput {
+      width: 530px;
+      height: 40px;
+      border: none;
+      border-radius: 5px 0 0 5px;
+      padding-left: 10px;
+
+      &:focus-visible,
+      &:active,
+      &:focus {
+        border: none !important;
+        outline: none !important;
+      }
+    }
+
+    .searchBoxButton {
+      height: 40px;
+      border: none;
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      border-radius: 0 5px 5px 0;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      svg {
+        height: 20px;
+      }
+
+      &:focus-visible,
+      &:active,
+      &:focus {
+        border: none !important;
+        outline: none !important;
+      }
+    }
+  }
+}

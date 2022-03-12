@@ -5,10 +5,55 @@
   align-items: center;
   width: 100%;
   height: 110px;
-  background-color: #fff;
-  box-shadow: 0px 2px 11px -3px rgba(89,89,89,0.76);
-  -webkit-box-shadow: 0px 2px 11px -3px rgba(89,89,89,0.76);
-  -moz-box-shadow: 0px 2px 11px -3px rgba(89,89,89,0.76);
+  background-color: transparent;
+  box-shadow: 0px 2px 11px -3px rgba(89, 89, 89, 0.76);
+
+  &.homeHeader {
+    box-shadow: none;
+    .headerLinks {
+      .headerLink {
+        color: $main-color;
+        &:not(.btn) {
+          &::after {
+            display: none;
+          }
+        }
+      }
+    }
+
+    &::before {
+      background-image: url("../../css/assets/hero.png");
+      background-position: top center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      top: 0;
+      position: absolute;
+      content: "";
+      min-height: 100vh;
+      min-width: 100%;
+      z-index: -2;
+    }
+
+    &::after {
+      background: radial-gradient(
+        circle at 74% 27%,
+        rgb(0 0 0 / 0%) 0%,
+        rgb(23 7 7 / 29%) 29%,
+        rgb(0 0 0 / 61%) 61%,
+        #000000 100%
+      );
+      background-size: cover;
+      background-position: top center;
+      background-repeat: no-repeat;
+      width: 100%;
+      min-height: 100vh;
+      content: "";
+      position: absolute;
+      opacity: 1;
+      top: 0;
+      z-index: -1;
+    }
+  }
 
   .logoLink {
     margin-left: 10px;
@@ -31,11 +76,11 @@
     .headerLink {
       text-decoration: none;
       border: none;
-      background-color: #fff;
+      background-color: transparent;
       font-family: sans-serif;
       font-size: 16px;
-      font-weight: 600;
-      color: $main-color;
+      font-weight: 200;
+      color: $secondary-color;
       padding-bottom: 0;
       padding-top: 0;
       padding-right: 0;
@@ -48,7 +93,7 @@
         &::after {
           content: "";
           position: absolute;
-          border-bottom: 4px solid $main-color;
+          border-bottom: 4px solid $secondary-color;
           width: 100%;
           bottom: 0;
         }
@@ -59,7 +104,8 @@
       }
 
       + .headerLink {
-        padding-left: 15px;
+        padding-left: 0;
+        margin-left: 15px;
       }
     }
   }

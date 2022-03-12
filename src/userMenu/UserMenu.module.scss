@@ -4,15 +4,22 @@
   :local(.dropDownDiv) {
     padding-left: 15px;
     .btn {
+      &.homeUserMenu {
+        color: $main-color !important;
+      }
       background: none !important;
       box-shadow: none !important;
-      color: $main-color !important;
+      color: $secondary-color !important;
       padding-left: 0;
+      &::after {
+        display: block !important;
+      }
     }
     &.show {
       .btn {
         &::after {
           transform: rotate(180deg);
+          display: block !important;
         }
       }
     }

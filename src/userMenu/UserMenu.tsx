@@ -1,6 +1,5 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
-import { IUser } from "../type";
+import { Link, useLocation } from "react-router-dom";
 import { UserContext } from "../userContext/UserContextComp";
 import headerStyles from '../layout/header/Header.module.scss';
 import styles from './UserMenu.module.scss';
@@ -8,9 +7,10 @@ import { logoutService } from "../services/GeneralServices";
 
 const UserMenu = () => {
   const userContext = useContext(UserContext);
+  const location = useLocation();
 
   return <div className={`dropdown ${styles.dropDownDiv}`}>
-    <button className={`${headerStyles.headerLink} btn btn-secondary dropdown-toggle`} type="button" id="headerDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <button className={`${headerStyles.headerLink} btn btn-secondary dropdown-toggle ${location.pathname == '/' ? 'homeUserMenu' : ''}`} type="button" id="headerDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       {`Hello, ${userContext.user.username}`}
     </button>
     <div className="dropdown-menu" aria-labelledby="headerDropdownMenuButton">
