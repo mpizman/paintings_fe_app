@@ -12,6 +12,7 @@ import LoginPage from '../loginPage/LoginPage';
 import Footer from './footer/Footer';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PaintingPage from '../paintingPage/PaintingPage';
 
 const Layout = () => {
 
@@ -20,6 +21,7 @@ const Layout = () => {
     <Route path="search" element={<SearchPage />} />
     <Route path="postPainting" element={<PostPaintingPage />} />
     <Route path="login" element={<LoginPage />} />
+    <Route path="painting/*" element={<PaintingPage />} />
     <Route path="*" element={<NotFoundPage />} />
   </Routes>;
 

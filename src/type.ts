@@ -50,13 +50,13 @@ export interface searchPaintingsResponse {
 }
 
 export interface Painting {
-  artist: String;
-  description: String;
-  id: String;
-  name: String;
+  artist: string;
+  description: string;
+  id: string;
+  name: string;
   price: Number;
   url: string;
   date: Date;
-  uploaderUsername: String;
+  uploaderUsername: string;
   score?: Number;
 }

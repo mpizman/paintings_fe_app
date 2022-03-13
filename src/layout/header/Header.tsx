@@ -24,7 +24,7 @@ const Header = () => {
       <Link to="/" className={`${styles.headerLink} ${location.pathname == '/' ? styles.active : ''}`}>
         Home
       </Link>
-      <Link to="/search" className={`${styles.headerLink} ${location.pathname == '/search' ? styles.active : ''}`}>
+      <Link to="/search?searchQuery=&pageNumber=0&rpp=10" className={`${styles.headerLink} ${location.pathname == '/search' ? styles.active : ''}`}>
         Search Page
       </Link>
       <button className={styles.headerLink}>
