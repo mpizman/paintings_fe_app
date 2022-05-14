@@ -1,0 +1,65 @@
+.paintingPageWrapper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background: rgba(218, 213, 213, 0.3);
+  position: relative;
+
+  .paintingPage {
+    display: flex;
+    background: #fff;
+    position: relative;
+    padding: 0;
+    box-shadow: 0px 0px 9px -6px rgb(0 0 0 / 77%);
+
+    :global {
+      .paintingData {
+        padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+
+        .paintingTitleAndDate {
+          display: flex;
+          align-items: center;
+          padding-top: 14px;
+
+          > h3 {
+            font-size: 25px;
+            font-weight: 800;
+          }
+
+          > span {
+            margin-left: auto;
+            font-size: 10px;
+            opacity: 0.7;
+          }
+        }
+
+        .artistSpan {
+          font-size: 12px;
+          font-weight: 500;
+        }
+
+        .description {
+          padding-top: 40px;
+          padding-right: 200px;
+          font-size: 25px;
+        }
+
+        .price {
+          font-size: 15px;
+          border: 1px solid black;
+          border-radius: 14px;
+          padding: 3px 10px;
+          margin: auto 0 15px auto;
+        }
+      }
+      .painting {
+        max-height: 400px;
+        max-width: 400px;
+        margin-left: auto;
+      }
+    }
+  }
+}

@@ -83,6 +83,10 @@ export const postPaintingService = (name: String,
   return fetchApi("POST", "api/painting", body, token);
 }
 
-export const getpaintingByIdService = (id: String) => {
+export const getpaintingByIdService = (id: String): Promise<Painting> => {
   return fetchApi("GET", `api/painting/${id}`);
+}
+
+export const deletePaintingService = (id: String, token: String): Promise<String> => {
+  return fetchApi("DELETE", `api/painting/${id}`, null, token);
 }
