@@ -36,7 +36,6 @@ const PostPaintingPage = () => {
   useEffect(() => {
     setIsValidPost(!!file?.size &&
       isValidImageName &&
-      !!description.length &&
       !!artist.length &&
       price >= 0);
   }, [file, isValidImageName, description, artist, price])
