@@ -9,7 +9,7 @@ const SearchBox = () => {
   const navigate = useNavigate();
 
   return <form className={styles.searchBox} onSubmit={e => {
-    navigate(`/search?searchQuery=${searchQuery}&pageNumber=0&rpp=10`)
+    navigate(`/search?searchQuery=${searchQuery}&pageNumber=0&rpp=9`)
   }}>
     <input className='searchBoxInput' placeholder='Looking for a painting?' onChange={e => setSearchQuery(e.target.value)} />
     <button type='submit' className='searchBoxButton'>

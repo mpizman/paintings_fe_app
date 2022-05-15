@@ -7,7 +7,8 @@ import styles from './SearchPage.module.scss';
 
 const SearchPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [searchResponse, setsearchResponse] = useState<searchPaintingsResponse>({} as searchPaintingsResponse)
+  const [searchResponse, setsearchResponse] = useState<searchPaintingsResponse>({} as searchPaintingsResponse);
+  const [scrollerPos, setScrollerPos] = useState<number>(0);
 
   useEffect(() => {
     getPaintingsService(searchParams.get("searchQuery") as String,
@@ -21,7 +22,36 @@ const SearchPage = () => {
     ).then(result => {
       setsearchResponse(result);
     });
-  }, [searchParams])
+  }, [searchParams]);
+
+  useEffect(() => {
+    if (scrollerPos > 0.9) {
+      let searchParamsObject: any = {};
+      searchParams.forEach((value, key) => {
+        searchParamsObject[key] = value;
+      });
+      const rpp = Number(searchParamsObject["rpp"]);
+      if (rpp < searchResponse.totalElements) {
+        setSearchParams({ ...searchParamsObject, rpp: rpp + 9 });
+      }
+    }
+  }, [scrollerPos])
+
+  useEffect(() => {
+    window.addEventListener('scroll', listenToScroll);
+    return () => window.removeEventListener('scroll', listenToScroll);
+  }, []);
+
+  const listenToScroll = () => {
+    const winScroll =
+      document.body.scrollTop || document.documentElement.scrollTop;
+
+    const height =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight;
+
+    setScrollerPos(winScroll / height);
+  }
 
   return <div className={`${styles.searchPage} container`}>
     {searchParams.get("searchQuery")?.length ?

@@ -23,11 +23,16 @@ export const fetchApi = (
   };
 
   return fetch(`${Constants.BE_URL}/${endpoint}`, requestOptions)
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(String(response.status));
+      }
+      return response.json();
+    })
     .then(result => {
       return result;
     })
-    .catch(error => console.log('error', error));
+    .catch(error => error);
 }
 
 export const attempLoginService = (username: String, password: String): Promise<LoginAttempResult> => {
