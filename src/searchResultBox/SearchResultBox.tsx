@@ -34,7 +34,7 @@ const SearchResultBox = (props: SearchResultsBoxProps) => {
             <button type="button" className="btn btn-danger" data-dismiss="modal" onClick={e => {
               deleteImageFromBucket(props.painting.name).then(result => {
                 deletePaintingService(props.painting.id, userContext.user.token).then(result => {
-                  toast.success(`Posted ${props.painting.name} successfully!`, {
+                  toast.success(`Deleted ${props.painting.name} successfully!`, {
                     position: "bottom-right",
                     autoClose: 2000,
                     hideProgressBar: false,
